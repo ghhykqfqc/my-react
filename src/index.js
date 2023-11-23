@@ -25,12 +25,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      {routes.map(route => (
+      {routes.filter(({ path }) => !path.startsWith('/iframe')).map(route => (
         <Route
           key={route.path}
           path={route.path}
           exact={route.exact}
-          component={route.component}
+          Component={route.component}
         />
       ))}
     </Routes>
