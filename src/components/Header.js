@@ -1,7 +1,9 @@
-const Header = () => {
+import { Button } from 'antd';
+
+function Header() {
     return (
       <div>
-        头部导航
+        <Button type="primary">Button</Button>
       </div>
     );
   }
