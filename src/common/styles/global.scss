@@ -5,6 +5,12 @@ body,
   height: 100%;
 }
 
+.ant-layout {
+  .ant-layout-sider-children {
+    overflow-y: auto;
+  }
+}
+
 /* 清浮动 */
 .clearfix:after {
   content: ".";
