@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
   AppstoreOutlined,
   MailOutlined,
   SettingOutlined
