@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,7 +8,6 @@ import {
   SettingOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
-import SubMenu from 'antd/es/menu';
 import routes from './routes';
 import './App.css';
 
@@ -26,7 +25,7 @@ function getItem(label, key, icon, children, path, type) {
 }
 
 const items = [
-  getItem('规则引擎', 'sub1', <MailOutlined />, [
+  getItem('规则引擎', '/rule', <MailOutlined />, [
     getItem('左因子表', '/LeftFactor', null, null, '/LeftFactor'),
     getItem('右因子表', '/RightFactor', null, null, '/RightFactor')
   ]),
@@ -48,35 +47,22 @@ const App = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const navigate = useNavigate();
+  const gotoRoute = (key) => {
+    navigate(key, {replace: true});
+  }
+
   return (
-    <Router>
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
-        {/* <Menu
+        <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
           items={items}
-          onSelect={item => console.log(item.key)}
-        /> */}
-        <Menu theme="dark" mode="inline">
-          {items.map(item => (
-            item.children ? (
-              <SubMenu key={item.key} icon={item.icon} title={item.label}>
-                {item.children.map(childItem => (
-                  <Menu.Item key={childItem.key}>
-                    <Link to={childItem.path}>{childItem.label}</Link>
-                  </Menu.Item>
-                ))}
-              </SubMenu>
-            ) : (
-              <Menu.Item key={item.key} icon={item.icon}>
-                <Link to={item.path}>{item.label}</Link>
-              </Menu.Item>
-            )
-          ))}
-        </Menu>
+          onSelect={item => gotoRoute(item.key)}
+        />
       </Sider>
       <Layout>
         <Header
@@ -118,7 +104,6 @@ const App = () => {
         </Content>
       </Layout>
     </Layout>
-    </Router>
   );
 };
 export default App;
