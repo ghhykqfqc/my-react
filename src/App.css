@@ -2,3 +2,7 @@
   height: 100vh;
   text-align: center;
 }
+
+.ant-layout-header {
+  display: flex;
+}

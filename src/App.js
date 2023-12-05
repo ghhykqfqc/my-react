@@ -24,23 +24,26 @@ function getItem(label, key, icon, children, path, type) {
   };
 }
 
-const items = [
-  getItem('规则引擎', '/rule', <MailOutlined />, [
-    getItem('左因子表', '/LeftFactor', null, null, '/LeftFactor'),
-    getItem('右因子表', '/RightFactor', null, null, '/RightFactor')
-  ]),
-  getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
+const menuItems = [
+  getItem('调度平台', 'sub2', <AppstoreOutlined />, [
     getItem('Option 5', '5'),
     getItem('Option 6', '6'),
     getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
   ]),
-  getItem('Navigation Three', 'sub4', <SettingOutlined />, [
+  getItem('规则引擎', 'rule', <MailOutlined />, [
+    getItem('左因子表', '/rule/LeftFactor', null, null, '/rule/LeftFactor'),
+    getItem('右因子表', '/rule/RightFactor', null, null, '/rule/RightFactor'),
+    getItem('左因子关联表', '/rule/LeftRelate', null, null, '/rule/LeftRelate'),
+    getItem('右因子关联表', '/rule/RightRelate', null, null, '/rule/RightRelate')
+  ]),
+  getItem('控制中心', 'sub4', <SettingOutlined />, [
     getItem('Option 9', '9'),
     getItem('Option 10', '10'),
     getItem('Option 11', '11'),
     getItem('Option 12', '12'),
   ]),
 ];
+
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -60,7 +63,7 @@ const App = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
-          items={items}
+          items={menuItems}
           onSelect={item => gotoRoute(item.key)}
         />
       </Sider>
@@ -91,7 +94,7 @@ const App = () => {
           }}
         >
           <Routes>
-            {routes.map(route => (
+            {routes.filter(({ path }) => path !== '/').map(route => (
               route.children ? (
                   route.children.map(childItem => (
                     <Route key={childItem.path} exact path={childItem.path} Component={childItem.component} />

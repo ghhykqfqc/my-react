@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
-function Rule () {
+function RightFactor () {
   return (
     <div>
       <Header />
       {/* 其他页面内容 */}
-      规则内容
+      右因子表
     </div>
   );
 }
 
-export default Rule;
+export default RightFactor;

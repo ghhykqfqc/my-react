@@ -1,13 +1,14 @@
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Rule from "./pages/Rule";
+import Login from "./pages/login/Login";
+import RightRelate from "./pages/rule/RightRelate";
 import Flow from "./pages/Flow";
-import LeftFactor from "./pages/LeftFactor";
-import RightFactor from "./pages/RightFactor";
+import LeftFactor from "./pages/rule/LeftFactor";
+import LeftRelate from "./pages/rule/LeftRelate";
+import RightFactor from "./pages/rule/RightFactor";
 
 const routes = [
     {
-      path: '/Login',
+      path: '/',
       exact: true,
       component: Login
     },
@@ -17,19 +18,28 @@ const routes = [
       component: Home
     },
     {
-      path: '/Rule',
+      path: '/rule',
       exact: true,
-      component: Rule,
       children: [
         {
-          path: '/LeftFactor',
+          path: '/rule/LeftFactor',
           exact: true,
           component: LeftFactor
         },
         {
-          path: '/RightFactor',
+          path: '/rule/RightFactor',
           exact: true,
           component: RightFactor
+        },
+        {
+          path: '/rule/LeftRelate',
+          exact: true,
+          component: LeftRelate
+        },
+        {
+          path: '/rule/RightRelate',
+          exact: true,
+          component: RightRelate
         }
       ]
     },
@@ -37,7 +47,7 @@ const routes = [
       path: '/Flow',
       exact: true,
       component: Flow
-    },
+    }
   ];
   
 export default routes;
