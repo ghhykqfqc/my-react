@@ -1,22 +1,10 @@
-import Home from "./pages/Home";
-import Login from "./pages/login/Login";
-import RightRelate from "./pages/rule/RightRelate";
 import Flow from "./pages/Flow";
+import RightRelate from "./pages/rule/RightRelate";
 import LeftFactor from "./pages/rule/LeftFactor";
 import LeftRelate from "./pages/rule/LeftRelate";
 import RightFactor from "./pages/rule/RightFactor";
 
 const routes = [
-    {
-      path: '/',
-      exact: true,
-      component: Login
-    },
-    {
-      path: '/Home',
-      exact: true,
-      component: Home
-    },
     {
       path: '/rule',
       exact: true,
