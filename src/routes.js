@@ -1,4 +1,4 @@
-import Flow from "./pages/Flow";
+import FlowProgress from "./pages/flow/FlowProgress";
 import RightRelate from "./pages/rule/RightRelate";
 import LeftFactor from "./pages/rule/LeftFactor";
 import LeftRelate from "./pages/rule/LeftRelate";
@@ -32,9 +32,9 @@ const routes = [
       ]
     },
     {
-      path: '/Flow',
+      path: '/flow/FlowProgress',
       exact: true,
-      component: Flow
+      component: FlowProgress
     }
   ];
   

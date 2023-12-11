@@ -17,7 +17,9 @@ function Login () {
         content: '登录成功!',
         duration: 2,
       });
-      navigate('/rule/LeftFactor', { replace: true });
+      setTimeout(()=>{
+        navigate('/flow/FlowProgress', { replace: true });
+      },2000)
     } else {
       messageApi.open({
         type: 'error',
@@ -57,17 +59,13 @@ function Login () {
             <Form.Item name="remember" valuePropName="checked" noStyle>
               <Checkbox>记住密码</Checkbox>
             </Form.Item>
-
-            <Button type="link" className="login-form-forgot">
-              忘记密码
-            </Button>
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
               登录
             </Button>
-            Or <Button type="link">立即注册!</Button>
+            <Button type="link">立即注册!</Button>
           </Form.Item>
         </Form>
       </div>

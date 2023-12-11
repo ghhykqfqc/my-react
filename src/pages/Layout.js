@@ -23,12 +23,8 @@ function getItem(label, key, icon, children, path, type) {
 
 const menuItems = [
   getItem("调度平台", "sub2", <AppstoreOutlined />, [
-    getItem("Option 5", "5"),
+    getItem("流程进度", "/flow/FlowProgress"),
     getItem("Option 6", "6"),
-    getItem("Submenu", "sub3", null, [
-      getItem("Option 7", "7"),
-      getItem("Option 8", "8"),
-    ]),
   ]),
   getItem("规则引擎", "rule", <MailOutlined />, [
     getItem("左因子表", "/rule/LeftFactor", null, null, "/rule/LeftFactor"),
@@ -43,6 +39,10 @@ const menuItems = [
     ),
   ]),
   getItem("控制中心", "sub4", <SettingOutlined />, [
+    getItem("Submenu", "sub3", null, [
+      getItem("Option 7", "7"),
+      getItem("Option 8", "8"),
+    ]),
     getItem("Option 9", "9"),
     getItem("Option 10", "10"),
     getItem("Option 11", "11"),
@@ -67,7 +67,8 @@ const AppLayout = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["/flow/FlowProgress", "6"]}
+          defaultSelectedKeys={["/flow/FlowProgress"]}
           items={menuItems}
           onSelect={(item) => gotoRoute(item.key)}
         />
