@@ -2,28 +2,20 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import axios from 'axios';
 import './Login.scss';
+import login from '../../common/api/loginApi'
 
 function Login () {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
     const { username, password } = values;
     
-    const login = (username: String, password: String) => {
-      return axios.post('/api/login', {
-        username,
-        password,
-      });
-    };
-
     // 使用
     login(username, password)
       .then(response => {
-        const {code, data, message} = response.data;
+        const {code, message} = response;
         if(code === 200) {
           messageApi.open({
             type: 'success',
@@ -38,7 +30,6 @@ function Login () {
             type: 'error',
             content: message,
           });
-          console.log(data);
         }
       })
       .catch(error => {

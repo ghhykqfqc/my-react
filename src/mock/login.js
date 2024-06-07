@@ -2,7 +2,7 @@
 import Mock from 'mockjs';
 
 // 使用 Mock 模拟登录接口
-Mock.mock('/api/login', 'post', (options) => {
+Mock.mock('http://localhost:3000/api/login', 'post', (options) => {
   // 解析请求数据
   const data = JSON.parse(options.body);
 
