@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import axios from 'axios';
 import './Login.scss';
 
 function Login () {
@@ -11,21 +12,38 @@ function Login () {
   const onFinish = (values: any) => {
     console.log('Success:', values);
     const { username, password } = values;
-    if(username === 'admin' && password === '111') {
-      messageApi.open({
-        type: 'success',
-        content: '登录成功!',
-        duration: 2,
+    
+    const login = (username: String, password: String) => {
+      return axios.post('/api/login', {
+        username,
+        password,
       });
-      setTimeout(()=>{
-        navigate('/flow/FlowProgress', { replace: true });
-      },2000)
-    } else {
-      messageApi.open({
-        type: 'error',
-        content: '用户名或密码错误，登录失败！',
+    };
+
+    // 使用
+    login(username, password)
+      .then(response => {
+        const {code, data, message} = response.data;
+        if(code === 200) {
+          messageApi.open({
+            type: 'success',
+            content: '登录成功!',
+            duration: 1,
+          });
+          setTimeout(()=>{
+            navigate('/flow/FlowProgress', { replace: true });
+          },1000)
+        } else {
+          messageApi.open({
+            type: 'error',
+            content: message,
+          });
+          console.log(data);
+        }
+      })
+      .catch(error => {
+        console.error('登录失败', error);
       });
-    }
   };
 
   return (

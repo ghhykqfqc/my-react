@@ -5,7 +5,9 @@ import routes from "./routes";
 import AppLayout from "./pages/Layout";
 import Login from "./pages/login/Login";
 import Home from "./pages/Home";
+import NotFound from './pages/NotFound/NotFound';
 import './App.css';
+import './mock/login'; // 引入mock数据
 
 
 const App = () => {
@@ -25,6 +27,7 @@ const App = () => {
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/Home" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   );
