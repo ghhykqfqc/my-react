@@ -10,18 +10,23 @@ function Login () {
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = (values: any) => {
-    const { username, password } = values;
+    const { username, password, remember} = values;
     
     // 使用
     login(username, password)
       .then(response => {
-        const {code, message} = response;
+        const {code, data, message} = response;
         if(code === 200) {
           messageApi.open({
             type: 'success',
             content: '登录成功!',
             duration: 1,
           });
+          if(remember) {
+            // 存储用户名和密码
+            localStorage.setItem('username', username);
+            localStorage.setItem('token', data.token);
+          }
           setTimeout(()=>{
             navigate('/flow/FlowProgress', { replace: true });
           },1000)
