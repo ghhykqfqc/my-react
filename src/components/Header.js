@@ -21,7 +21,7 @@ function Header() {
       {contextHolder}
       <h1>低代码平台</h1>
       <Button type="primary" onClick={loginOut}>
-        <Iconfont  name="logout" color='#fff' className="additional-class"/>退出登录
+        <Iconfont name="logout" color='#fff' className="additional-class"/>退出登录
       </Button>
     </div>
   );
