@@ -4,8 +4,8 @@ import { Layout } from 'antd';
 import routes from "./routes";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/login/Login";
-import Home from "./pages/Home/Home";
-import NotFound from './pages/NotFound/NotFound';
+import Home from "./pages/home/Home";
+import NotFound from './pages/notFound/NotFound';
 import './App.css';
 import './mock/login'; // 引入mock数据
 
@@ -26,7 +26,7 @@ const App = () => {
           ))}
         </Route>
         <Route path="/" element={<Login />} />
-        <Route path="/Home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
