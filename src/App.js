@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 import { Layout } from 'antd';
 import routes from "./routes";
-import AppLayout from "./pages/Layout";
+import AppLayout from "./pages/AppLayout";
 import Login from "./pages/login/Login";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import NotFound from './pages/NotFound/NotFound';
 import './App.css';
 import './mock/login'; // 引入mock数据

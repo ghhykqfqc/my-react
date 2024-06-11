@@ -8,9 +8,14 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-
 const { Header, Sider, Content } = Layout;
-function getItem(label, key, icon, children, path, type) {
+function getItem<T>(
+  label: string,
+  key: string,
+  icon?: any,
+  children?: Array<T> | null,
+  path?: string,
+  type?: string) {
   return {
     key,
     icon,
@@ -56,7 +61,7 @@ const AppLayout = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const navigate = useNavigate();
-  const gotoRoute = (key) => {
+  const gotoRoute = (key: string) => {
     navigate(key, { replace: true });
   };
 
