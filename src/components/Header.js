@@ -1,4 +1,4 @@
-import { Button, message } from 'antd';
+import { Avatar, Button, message } from 'antd';
 import { useNavigate } from "react-router-dom";
 import Iconfont from '../common/js/Iconfont'
 
@@ -20,6 +20,7 @@ function Header() {
     <div>
       {contextHolder}
       <h1>低代码平台</h1>
+      <Avatar>管理员</Avatar>
       <Button type="primary" onClick={loginOut}>
         <Iconfont name="logout" color='#fff' className="additional-class"/>退出登录
       </Button>
