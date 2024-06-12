@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../../components/Header';
 import { useNavigate } from "react-router-dom";
 import { Button } from 'antd';
+import './Home.scss'
 
 function Home () {
   const navigate = useNavigate();
@@ -12,10 +12,15 @@ function Home () {
   }
 
   return (
-    <div>
-      <Header />
-      <div>
+    <div className='home-page'>
+      <div className='home-header'>
+        <h1 className='home-header-title'>Low Code World</h1>
+      </div>
+      <div className='home-wrapper'>
         <Button type="primary" onClick={toEnjoy}>立即体验</Button>
+      </div>
+      <div className='home-footer'>
+        <div>备案号：xxx</div>
       </div>
     </div>
   );

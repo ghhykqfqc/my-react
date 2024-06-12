@@ -30,11 +30,6 @@ function Login () {
       .then(response => {
         const {code, data, message} = response;
         if(code === 200) {
-          messageApi.open({
-            type: 'success',
-            content: '登录成功!',
-            duration: 1,
-          });
           if(remember) {
             // 存储用户名和密码
             localStorage.setItem('username', username);
@@ -43,6 +38,11 @@ function Login () {
           setTimeout(()=>{
             navigate('/home', { replace: true });
           },1000)
+          messageApi.open({
+            type: 'success',
+            content: '登录成功!',
+            duration: 1,
+          });
         } else {
           messageApi.open({
             type: 'error',
@@ -62,7 +62,7 @@ function Login () {
         <Form
           name="normal_login"
           className="login-form"
-          initialValues={{ remember: true }}
+          initialValues={{ remember: false }}
           onFinish={onFinish}
         >
           <Form.Item

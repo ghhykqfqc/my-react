@@ -8,6 +8,7 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
+import HeaderCom from '../components/HeaderCom/HeaderCom';
 const { Header, Sider, Content } = Layout;
 function getItem<T>(
   label: string,
@@ -85,16 +86,7 @@ const AppLayout = () => {
             background: colorBgContainer,
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
+          <HeaderCom collapsed={collapsed} setCollapsed={setCollapsed} />
         </Header>
         <Content
           style={{
