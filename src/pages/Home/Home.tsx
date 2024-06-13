@@ -6,9 +6,7 @@ import './Home.scss'
 function Home () {
   const navigate = useNavigate();
   const toEnjoy = () => {
-    setTimeout(() => {
-      navigate('/login', { replace: false });
-    }, 1000);
+    navigate('/login', { replace: false });
   }
 
   return (
