@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -8,19 +8,28 @@ import login from '../../common/api/loginApi'
 function Login () {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const isFirstRender = useRef(true);
 
   // 检查本地存储中是否存在 token
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      // 模拟验证 token 的过程
-      // 这里可以调用一个函数来验证 token 是否有效, 此处简单认为token存在即有效
-      // 如果有效，则跳转到主页
-      setTimeout(() => {
-        navigate('/home', { replace: true });
-      }, 1000);
+    if (isFirstRender.current) { // 使只在组件挂载时执行一次
+      isFirstRender.current = false;
+      const token = localStorage.getItem('token');
+      if (token) {
+        // 模拟验证 token 的过程
+        // 这里可以调用一个函数来验证 token 是否有效, 此处简单认为token存在即有效
+        // 如果有效，则跳转到主页
+        setTimeout(() => {
+          navigate('/flow/FlowProgress', { replace: true });
+        }, 1000);
+        messageApi.open({
+          type: 'success',
+          content: '登录成功!',
+          duration: 1,
+        });
+      }
     }
-  }, [navigate]);
+  }, []);
 
   const onFinish = (values: any) => {
     const { username, password, remember} = values;
@@ -36,7 +45,7 @@ function Login () {
             localStorage.setItem('token', data.token);
           }
           setTimeout(()=>{
-            navigate('/home', { replace: true });
+            navigate('/flow/FlowProgress', { replace: true });
           },1000)
           messageApi.open({
             type: 'success',

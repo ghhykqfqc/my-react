@@ -7,7 +7,7 @@ function Home () {
   const navigate = useNavigate();
   const toEnjoy = () => {
     setTimeout(() => {
-      navigate('/flow/FlowProgress', { replace: false });
+      navigate('/login', { replace: false });
     }, 1000);
   }
 

@@ -15,7 +15,7 @@ function HeaderCom(headerProps: headerProps) {
   const loginOut = () => {
     localStorage.removeItem('token');
     setTimeout(() => {
-      navigate('/', { replace: true });
+      navigate('/login', { replace: true });
     }, 1000);
     messageApi.open({
       type: 'success',
