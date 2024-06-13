@@ -1,7 +1,8 @@
 import axios from 'axios';
+import isMockEnabled from '../../config/mock';
 
 const defaultConfig = {
-  baseURL: 'http://localhost:3000/',
+  baseURL:'http://localhost:3000/',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
@@ -13,6 +14,10 @@ const instance = axios.create(defaultConfig);
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
+    if(isMockEnabled) {
+      // 使用 Mock 数据
+      config.url = config.url.replace('/api', '/mock-api');
+    }
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

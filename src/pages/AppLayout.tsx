@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   AppstoreOutlined,
   MailOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
 import HeaderCom from '../components/HeaderCom/HeaderCom';
 const { Header, Sider, Content } = Layout;
 function getItem<T>(
