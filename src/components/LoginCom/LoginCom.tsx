@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 import { Button, Checkbox, Form, Input } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import './LoginCom.scss';
@@ -8,11 +8,10 @@ import { msgModel } from '../../types/util';
 
 interface loginProps {
     showMsg: (msg: msgModel) => void;
+    navigate: NavigateFunction
 }
 
 function Login (props: loginProps) {
-    const navigate = useNavigate();
-
     const onFinish = (values: any) => {
         const { username, password, remember} = values;
         
@@ -27,7 +26,7 @@ function Login (props: loginProps) {
                 localStorage.setItem('token', data.token);
               }
               setTimeout(()=>{
-                navigate('/flow/FlowProgress', { replace: true });
+                props.navigate('/flow/FlowProgress', { replace: true });
               },1000)
               props.showMsg({ content: '登录成功!' });
             } else {

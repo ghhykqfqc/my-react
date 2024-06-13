@@ -40,7 +40,7 @@ function Login () {
   return (
     <div className='login-page'>
       {contextHolder}
-      <LoginCom showMsg={showMsg} />
+      <LoginCom showMsg={ showMsg } navigate={ navigate } />
     </div>
   );
 }
