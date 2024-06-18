@@ -21,7 +21,7 @@ function Login () {
         // 这里可以调用一个函数来验证 token 是否有效, 此处简单认为token存在即有效
         // 如果有效，则跳转到主页
         setTimeout(() => {
-          navigate('/flow/FlowProgress', { replace: true });
+          navigate('/flow/FlowAttr', { replace: true });
         }, 1000);
         showMsg({ content: '登录成功!' });
       }

@@ -27,8 +27,8 @@ function getItem<T>(
 
 const menuItems = [
   getItem("调度平台", "sub2", <AppstoreOutlined />, [
+    getItem("流程属性", "/flow/FlowAttr"),
     getItem("流程进度", "/flow/FlowProgress"),
-    getItem("Option 6", "6"),
   ]),
   getItem("规则引擎", "rule", <MailOutlined />, [
     getItem("左因子表", "/rule/LeftFactor", null, null, "/rule/LeftFactor"),

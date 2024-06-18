@@ -26,7 +26,7 @@ function Login (props: loginProps) {
                 localStorage.setItem('token', data.token);
               }
               setTimeout(()=>{
-                props.navigate('/flow/FlowProgress', { replace: true });
+                props.navigate('/flow/FlowAttr', { replace: true });
               },1000)
               props.showMsg({ content: '登录成功!' });
             } else {

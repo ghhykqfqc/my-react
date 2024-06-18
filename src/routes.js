@@ -1,3 +1,4 @@
+import FlowAttr from "./pages/flowAttr/FlowAttr";
 import FlowProgress from "./pages/flow/FlowProgress";
 import RightRelate from "./pages/rule/RightRelate";
 import LeftFactor from "./pages/rule/LeftFactor";
@@ -32,9 +33,20 @@ const routes = [
       ]
     },
     {
-      path: '/flow/FlowProgress',
+      path: '/flow',
       exact: true,
-      component: FlowProgress
+      children: [
+        {
+          path: '/flow/FlowProgress',
+          exact: true,
+          component: FlowProgress
+        },
+        {
+          path: '/flow/FlowAttr',
+          exact: true,
+          component: FlowAttr
+        }
+      ]
     }
   ];
   
