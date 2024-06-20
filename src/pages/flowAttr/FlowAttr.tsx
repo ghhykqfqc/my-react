@@ -174,29 +174,8 @@ function FlowAttr () {
       ),
     },
   ];
-  
-  const initList: DataType[] = [
-    {
-      key: '1',
-      flowId: '32',
-      flowName: 'John Brown',
-      status: 'nice',
-    },
-    {
-      key: '2',
-      flowId: '42',
-      flowName: 'Jim Green',
-      status: 'loser',
-    },
-    {
-      key: '3',
-      flowId: '52',
-      flowName: 'Joe Black',
-      status: 'cool',
-    },
-  ];
 
-  const [flowList, setFlowList] = useState(initList);
+  const [flowList, setFlowList] = useState([]);
 
   const refreshTable = (values: filterType) => {
     const {flowId = '', flowName = '', status} = values;
