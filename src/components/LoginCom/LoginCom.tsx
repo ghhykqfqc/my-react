@@ -14,9 +14,8 @@ interface loginProps {
 function Login (props: loginProps) {
     const onFinish = (values: any) => {
         const { username, password, remember} = values;
-        
-        // 使用
-        login(username, password)
+        // 登录
+        login({username, password})
           .then(response => {
             const {code, data, message} = response;
             if(code === 200) {

@@ -7,7 +7,7 @@ import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
 import NotFound from './pages/notFound/NotFound';
 import './App.css';
-import './mock/login'; // 引入mock数据
+import './mock/index' // 引入mock数据
 
 
 const App = () => {
