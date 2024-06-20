@@ -1,5 +1,5 @@
 import axios from 'axios';
-import isMockEnabled from '../../config/mock';
+import isMockEnabled from '@/config/mock';
 
 const defaultConfig = {
   baseURL:'http://localhost:3000/',

@@ -1,6 +1,6 @@
 import { Avatar, Button, message } from 'antd';
 import { useNavigate } from "react-router-dom";
-import Iconfont from '../../common/js/Iconfont'
+import Iconfont from '@/common/js/Iconfont'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import './HeaderCom.scss'
 

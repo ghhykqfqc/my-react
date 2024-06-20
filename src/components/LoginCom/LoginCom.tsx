@@ -3,8 +3,8 @@ import { NavigateFunction } from "react-router-dom";
 import { Button, Checkbox, Form, Input } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import './LoginCom.scss';
-import login from '../../common/api/loginApi'
-import { msgModel } from '../../types/util';
+import login from '@/common/api/loginApi'
+import { msgModel } from '@/types/util';
 
 interface loginProps {
     showMsg: (msg: msgModel) => void;

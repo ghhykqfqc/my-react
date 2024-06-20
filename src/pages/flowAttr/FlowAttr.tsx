@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag, Input, Form, Row, Button, Select, Col, theme, FormInstance, message } from 'antd';
 import type { TableProps } from 'antd';
 import './FlowAttr.scss'
-import getFlowList from '../../common/api/flowApi';
-import { keyValueMap, msgModel, SelectOptions } from '../../types/util';
+import getFlowList from '@/common/api/flowApi';
+import { keyValueMap, msgModel, SelectOptions } from '@/types/util';
 
 function FlowAttr () {
   interface ItemType {

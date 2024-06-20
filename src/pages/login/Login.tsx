@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import { message } from 'antd';
-import LoginCom from '../../components/LoginCom/LoginCom';
-import { msgModel } from '../../types/util';
+import LoginCom from '@/components/LoginCom/LoginCom';
+import { msgModel } from '@/types/util';
 import './Login.scss';
 
 
