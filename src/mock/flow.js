@@ -1,5 +1,6 @@
 // mock/flow.js
 import Mock from 'mockjs';
+import apiConfig from '@/config/apiConfig';
 
 // 定义模拟数据
 const flowList = Mock.mock({
@@ -14,7 +15,7 @@ const flowList = Mock.mock({
 });
 
 // 使用 Mock 模拟获取flowList
-Mock.mock('http://localhost:3000/mock-api/getFlowList', 'post', (options) => {
+Mock.mock(`${apiConfig.baseURL}/mock-api/getFlowList`, 'post', (options) => {
   // 解析请求数据
   const data = JSON.parse(options.body);
 

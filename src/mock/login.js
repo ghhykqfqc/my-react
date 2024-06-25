@@ -1,8 +1,9 @@
 // mock/login.js
 import Mock from 'mockjs';
+import apiConfig from '@/config/apiConfig';
 
 // 使用 Mock 模拟登录接口
-Mock.mock('http://localhost:3000/mock-api/login', 'post', (options) => {
+Mock.mock(`${apiConfig.baseURL}/mock-api/login`, 'post', (options) => {
   // 解析请求数据
   const data = JSON.parse(options.body);
 

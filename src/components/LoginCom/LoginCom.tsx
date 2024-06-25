@@ -70,7 +70,6 @@ function Login (props: loginProps) {
                 <Checkbox>记住密码</Checkbox>
                 </Form.Item>
             </Form.Item>
-
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
                 登录

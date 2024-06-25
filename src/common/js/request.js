@@ -1,8 +1,9 @@
 import axios from 'axios';
 import isMockEnabled from '@/config/mock';
+import apiConfig from '@/config/apiConfig';
 
 const defaultConfig = {
-  baseURL:'http://localhost:3000/',
+  baseURL: apiConfig.baseURL,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
