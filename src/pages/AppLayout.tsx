@@ -41,6 +41,9 @@ const menuItems = [
     getItem("左因子关联表", "/rule/LeftRelate", "/rule/LeftRelate", null, null),
     getItem("右因子关联表", "/rule/RightRelate", "/rule/RightRelate", null, null),
   ]),
+  getItem("会话引擎", "chat", '/chat', <AppstoreOutlined />, [
+    getItem("翻译", "/chat/Translate", "/chat/Translate", null, null),
+  ]),
   getItem("控制中心", "sub4", '/sub4', <SettingOutlined />, [
     getItem("Submenu", "sub3", '/sub3', null, [
       getItem("Option 7", "7", "/7"),

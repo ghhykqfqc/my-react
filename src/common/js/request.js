@@ -1,5 +1,5 @@
 import axios from 'axios';
-import isMockEnabled from '@/config/mock';
+import isMockEnabled from '@/config/mockConfig';
 import apiConfig from '@/config/apiConfig';
 
 const defaultConfig = {

@@ -4,6 +4,7 @@ import RightRelate from "./pages/rule/RightRelate";
 import LeftFactor from "./pages/rule/LeftFactor";
 import LeftRelate from "./pages/rule/LeftRelate";
 import RightFactor from "./pages/rule/RightFactor";
+import Translate from "./pages/chat/Translate";
 
 const routes = [
     {
@@ -45,6 +46,17 @@ const routes = [
           path: '/flow/FlowAttr',
           exact: true,
           component: FlowAttr
+        }
+      ]
+    },
+    {
+      path: '/chat',
+      exact: true,
+      children: [
+        {
+          path: '/chat/translate',
+          exact: true,
+          component: Translate
         }
       ]
     }
