@@ -2,7 +2,10 @@ import { Avatar, Button, message } from 'antd';
 import { useNavigate } from "react-router-dom";
 import Iconfont from '@/common/js/Iconfont'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { useSelector, useDispatch } from 'react-redux';
 import './HeaderCom.scss'
+import { IRootState } from '@/stores/index';
+import { deleteUser } from '@/stores/modules/userStore';
 
 interface headerProps {
   collapsed: boolean,
@@ -10,10 +13,12 @@ interface headerProps {
 }
 
 function HeaderCom(headerProps: headerProps) {
+  const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
   const loginOut = () => {
     localStorage.removeItem('token');
+    dispatch(deleteUser());
     setTimeout(() => {
       navigate('/login', { replace: true });
     }, 1000);
@@ -23,6 +28,10 @@ function HeaderCom(headerProps: headerProps) {
       duration: 1,
     });
   }
+
+  const username = useSelector((state: IRootState) => state.user.username) || '';
+  console.log('HeaderCom username:', username);
+  
   return (
     <div className='header-container'>
       {contextHolder}
@@ -40,7 +49,7 @@ function HeaderCom(headerProps: headerProps) {
         <h1 className='header-container__left-title'>低代码平台</h1>
       </div>
       <div className='header-container__right'>
-        <Avatar>管理员</Avatar>
+        <Avatar>{ username }</Avatar>
         <Button type="primary" onClick={loginOut}>
           <Iconfont name="logout" color='#fff' className="additional-class"/>退出登录
         </Button>

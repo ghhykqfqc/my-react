@@ -3,7 +3,9 @@ import { NavigateFunction } from "react-router-dom";
 import { Button, Checkbox, Form, Input } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import './LoginCom.scss';
-import login from '@/common/api/loginApi'
+import login from '@/common/api/loginApi';
+import { useDispatch } from 'react-redux';
+import { addUser } from '@/stores/modules/userStore'
 import { msgModel } from '@/types/util';
 
 interface loginProps {
@@ -12,6 +14,7 @@ interface loginProps {
 }
 
 function Login (props: loginProps) {
+    const dispatch = useDispatch();
     const onFinish = (values: any) => {
         const { username, password, remember} = values;
         // 登录
@@ -24,6 +27,7 @@ function Login (props: loginProps) {
                 localStorage.setItem('username', username);
                 localStorage.setItem('token', data.token);
               }
+              dispatch(addUser(username));
               setTimeout(()=>{
                 props.navigate('/flow/FlowAttr', { replace: true });
               },1000)
