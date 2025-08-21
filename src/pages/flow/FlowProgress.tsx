@@ -90,6 +90,9 @@ function FlowProgress () {
             Previous
           </Button>
         )}
+        <Button type="primary" href="/flowEngine">
+          流程配置
+        </Button>
       </div>
     </div>
   );

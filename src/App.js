@@ -6,6 +6,7 @@ import AppLayout from "./pages/AppLayout";
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
 import NotFound from './pages/notFound/NotFound';
+import FlowEngine from './pages/flowEngine/FlowEngine';
 import './App.css';
 import './mock/index'; // 引入mock数据
 import store from '@/stores';
@@ -29,6 +30,7 @@ const App = () => {
             ))}
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/flowEngine" element={<FlowEngine />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
