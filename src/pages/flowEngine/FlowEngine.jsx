@@ -71,8 +71,19 @@ const DnDFlow = () => {
 
   const onNodeDrag = useCallback((_, node) => {
     const intersections = getIntersectingNodes(node).map((n) => n.id);
+    setNodes((ns) =>
+      ns.map((n) => ({
+        ...n,
+        className: intersections.includes(n.id) ? 'highlight' : '',
+      })),
+    );
+  }, []);
+
+  const onNodeDragStop = useCallback((_, node)=> {
     const intersectionGroup = getIntersectingNodes(node).find((n) => n.type === 'group');
-    
+    if(!intersectionGroup) {
+      return
+    }
     setNodes((ns) => {
       // 1. 找到 intersectionGroup 节点（假设它存在且有 id）
       const groupNode = intersectionGroup ? { ...intersectionGroup } : null;
@@ -88,7 +99,7 @@ const DnDFlow = () => {
           n.id === node.id && intersectionGroup ? 'parent' : n.extent;
           return {
             ...n,
-            className: intersections.includes(n.id) ? 'highlight' : '',
+            // className: intersections.includes(n.id) ? 'highlight' : '',
             parentId,
             extent
           }
@@ -98,7 +109,7 @@ const DnDFlow = () => {
       // 注意：如果 intersectionGroup 不存在，则直接返回 processedOtherNodes
       return groupNode ? [groupNode, ...processedOtherNodes] : processedOtherNodes;
     });
-  }, []);
+  }, [])
 
   const onSave = useCallback(() => {
     if (rfInstance) {
@@ -140,6 +151,7 @@ const DnDFlow = () => {
           onConnect={onConnect}
           onDrop={onDrop}
           onNodeDrag={onNodeDrag}
+          onNodeDragStop={onNodeDragStop}
           onDragStart={onDragStart}
           onDragOver={onDragOver}
           onInit={setRfInstance}
