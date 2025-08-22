@@ -15,14 +15,7 @@ import { DnDProvider, useDnD } from './DnDContext';
 import '@xyflow/react/dist/style.css';
 import './FlowEngine.css';
  
-const initialNodes = [
-  {
-    id: '1',
-    type: 'input',
-    data: { label: 'input node' },
-    position: { x: 250, y: 5 },
-  },
-];
+const initialNodes = [];
  
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -33,12 +26,12 @@ const DnDFlow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [rfInstance, setRfInstance] = useState(null);
-  const { setViewport, screenToFlowPosition } = useReactFlow();
+  const { setViewport, screenToFlowPosition, getIntersectingNodes } = useReactFlow();
   const [type, setType] = useDnD();
  
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
  
-  const onDragOver = useCallback((event) => {
+  const onDragOver = useCallback((event, node) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
@@ -69,14 +62,43 @@ const DnDFlow = () => {
           type,
           position,
           data: { label: `${type}-Node` },
-          parentId: null,
-          extent: 'parent',
         };
       }
       setNodes((nds) => nds.concat(newNode));
     },
     [screenToFlowPosition, type],
   );
+
+  const onNodeDrag = useCallback((_, node) => {
+    const intersections = getIntersectingNodes(node).map((n) => n.id);
+    const intersectionGroup = getIntersectingNodes(node).find((n) => n.type === 'group');
+    
+    setNodes((ns) => {
+      // 1. 找到 intersectionGroup 节点（假设它存在且有 id）
+      const groupNode = intersectionGroup ? { ...intersectionGroup } : null;
+
+      // 2. 从原节点数组中过滤掉 intersectionGroup（避免重复，后面我们会手动插入到最前）
+      const otherNodes = ns.filter((n) => n.id !== groupNode?.id);
+
+      // 3. 对其他节点应用你原有的逻辑：高亮、parentId、extent
+      const processedOtherNodes = otherNodes.map((n) => {
+        const parentId =
+          n.id === node.id && intersectionGroup ? intersectionGroup.id : n.parentId;
+        const extent =
+          n.id === node.id && intersectionGroup ? 'parent' : n.extent;
+          return {
+            ...n,
+            className: intersections.includes(n.id) ? 'highlight' : '',
+            parentId,
+            extent
+          }
+      });
+
+      // 4. 构造最终节点数组：[intersectionGroup, ...processedOtherNodes]
+      // 注意：如果 intersectionGroup 不存在，则直接返回 processedOtherNodes
+      return groupNode ? [groupNode, ...processedOtherNodes] : processedOtherNodes;
+    });
+  }, []);
 
   const onSave = useCallback(() => {
     if (rfInstance) {
@@ -117,6 +139,7 @@ const DnDFlow = () => {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           onDrop={onDrop}
+          onNodeDrag={onNodeDrag}
           onDragStart={onDragStart}
           onDragOver={onDragOver}
           onInit={setRfInstance}

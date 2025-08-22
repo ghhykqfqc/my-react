@@ -64,6 +64,15 @@ body {
   margin-top: 10px;
 }
 
+.react-flow__node.highlight {
+  background-color: #918fbe;
+  color: white;
+}
+ 
+.intersection-flow .react-flow__handle {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .dndflow {
     flex-direction: row;
